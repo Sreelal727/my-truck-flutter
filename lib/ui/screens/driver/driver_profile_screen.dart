@@ -20,6 +20,18 @@ class _DriverProfileScreenState extends ConsumerState<DriverProfileScreen> {
   bool _isAvailable = true;
   String _selectedLanguage = 'EN';
 
+  void _showSnack(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: MtColors.surfaceElevated,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
@@ -125,7 +137,7 @@ class _DriverProfileScreenState extends ConsumerState<DriverProfileScreen> {
                 right: 0,
                 child: GestureDetector(
                   onTap: () {
-                    // TODO: Pick profile photo
+                    _showSnack(context, 'Camera coming soon');
                   },
                   child: Container(
                     width: 24,
@@ -181,7 +193,7 @@ class _DriverProfileScreenState extends ConsumerState<DriverProfileScreen> {
           // Edit button
           GestureDetector(
             onTap: () {
-              // TODO: Navigate to edit profile
+              _showSnack(context, 'Edit Profile coming soon');
             },
             child: Container(
               width: 36,
@@ -536,7 +548,7 @@ class _DriverProfileScreenState extends ConsumerState<DriverProfileScreen> {
           // Call button
           GestureDetector(
             onTap: () {
-              // TODO: Launch phone dialer
+              _showSnack(context, 'Calling Sharma Transport Co...');
             },
             child: Container(
               width: 40,
@@ -631,7 +643,7 @@ class _DriverProfileScreenState extends ConsumerState<DriverProfileScreen> {
             icon: Icons.notifications_outlined,
             label: 'Notifications',
             onTap: () {
-              // TODO: Navigate to notifications settings
+              _showSnack(context, 'Notification Settings coming soon');
             },
           ),
           _buildSettingsDivider(),
@@ -639,7 +651,7 @@ class _DriverProfileScreenState extends ConsumerState<DriverProfileScreen> {
             icon: Icons.help_outline_rounded,
             label: 'Help & Support',
             onTap: () {
-              // TODO: Navigate to help
+              _showSnack(context, 'Help & Support coming soon');
             },
           ),
           _buildSettingsDivider(),
@@ -647,7 +659,7 @@ class _DriverProfileScreenState extends ConsumerState<DriverProfileScreen> {
             icon: Icons.description_outlined,
             label: 'Terms of Service',
             onTap: () {
-              // TODO: Navigate to terms
+              _showSnack(context, 'Terms of Service coming soon');
             },
           ),
           _buildSettingsDivider(),
@@ -655,7 +667,7 @@ class _DriverProfileScreenState extends ConsumerState<DriverProfileScreen> {
             icon: Icons.shield_outlined,
             label: 'Privacy Policy',
             onTap: () {
-              // TODO: Navigate to privacy
+              _showSnack(context, 'Privacy Policy coming soon');
             },
           ),
         ],

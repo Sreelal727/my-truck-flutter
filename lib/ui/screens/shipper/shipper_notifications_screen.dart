@@ -95,7 +95,9 @@ class ShipperNotificationsScreen extends ConsumerWidget {
                 itemCount: _notifications.length,
                 itemBuilder: (context, index) {
                   final notif = _notifications[index];
-                  return Container(
+                  return GestureDetector(
+                    onTap: () => _showSnack(context, notif.title),
+                    child: Container(
                     margin: const EdgeInsets.symmetric(
                       horizontal: MtSpacing.xl,
                       vertical: MtSpacing.xs,
@@ -159,6 +161,7 @@ class ShipperNotificationsScreen extends ConsumerWidget {
                         ),
                       ],
                     ),
+                  ),
                   ).animate().fadeIn(
                         delay: Duration(milliseconds: index * 80),
                         duration: 400.ms,
@@ -171,4 +174,16 @@ class ShipperNotificationsScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+void _showSnack(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      backgroundColor: MtColors.surfaceElevated,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      duration: const Duration(seconds: 2),
+    ),
+  );
 }

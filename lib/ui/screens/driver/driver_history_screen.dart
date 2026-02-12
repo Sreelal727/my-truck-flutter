@@ -88,6 +88,18 @@ const _mockTrips = [
 class DriverHistoryScreen extends ConsumerWidget {
   const DriverHistoryScreen({super.key});
 
+  void _showSnack(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: MtColors.surfaceElevated,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -116,7 +128,7 @@ class DriverHistoryScreen extends ConsumerWidget {
               ...List.generate(_mockTrips.length, (i) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: MtSpacing.md),
-                  child: _buildTripCard(_mockTrips[i]),
+                  child: _buildTripCard(context, _mockTrips[i]),
                 );
               }),
             ],
@@ -213,10 +225,14 @@ class DriverHistoryScreen extends ConsumerWidget {
   }
 
   // ─── Single Trip Card ─────────────────────────────────────────────────
-  Widget _buildTripCard(_MockHistoryTrip trip) {
+  Widget _buildTripCard(BuildContext context, _MockHistoryTrip trip) {
     final isCompleted = trip.status == 'completed';
 
-    return MtCard(
+    return GestureDetector(
+      onTap: () {
+        _showSnack(context, 'Trip ${trip.tripId} details coming soon');
+      },
+      child: MtCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -335,6 +351,7 @@ class DriverHistoryScreen extends ConsumerWidget {
             ],
           ),
         ],
+      ),
       ),
     );
   }

@@ -283,6 +283,7 @@ class _TruckCard extends StatelessWidget {
 
     return MtCard(
       variant: MtCardVariant.surface,
+      onTap: () => _showSnack(context, 'Truck ${truck.registration} details coming soon'),
       child: Row(
         children: [
           // Truck icon
@@ -422,6 +423,7 @@ class _DriverCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return MtCard(
       variant: MtCardVariant.surface,
+      onTap: () => _showSnack(context, '${driver.name} details coming soon'),
       child: Row(
         children: [
           // Avatar placeholder
@@ -514,4 +516,16 @@ class _DriverCard extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showSnack(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      backgroundColor: MtColors.surfaceElevated,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      duration: const Duration(seconds: 2),
+    ),
+  );
 }

@@ -226,6 +226,7 @@ class ShipperHomeScreen extends ConsumerWidget {
                 iconColor: MtColors.green,
                 title: 'Order ORD-998 delivered successfully',
                 time: '2 hours ago',
+                onTap: () => context.go(Routes.shipperOrders),
               ).animate().fadeIn(delay: 550.ms, duration: 400.ms).slideX(begin: 0.05, end: 0),
 
               _buildActivityItem(
@@ -233,6 +234,7 @@ class ShipperHomeScreen extends ConsumerWidget {
                 iconColor: MtColors.orange,
                 title: 'New bid received on ORD-1001',
                 time: '5 hours ago',
+                onTap: () => context.push(Routes.shipperBidding),
               ).animate().fadeIn(delay: 600.ms, duration: 400.ms).slideX(begin: 0.05, end: 0),
 
               _buildActivityItem(
@@ -240,6 +242,7 @@ class ShipperHomeScreen extends ConsumerWidget {
                 iconColor: MtColors.primary,
                 title: 'Payment of \u20B925,000 processed',
                 time: 'Yesterday',
+                onTap: () => _showSnack(context, 'Payment details coming soon'),
               ).animate().fadeIn(delay: 650.ms, duration: 400.ms).slideX(begin: 0.05, end: 0),
             ],
           ),
@@ -306,8 +309,12 @@ class ShipperHomeScreen extends ConsumerWidget {
     required Color iconColor,
     required String title,
     required String time,
+    VoidCallback? onTap,
   }) {
-    return Padding(
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: MtSpacing.xl,
         vertical: MtSpacing.sm,
@@ -346,6 +353,19 @@ class ShipperHomeScreen extends ConsumerWidget {
           ),
         ],
       ),
+    ),
     );
   }
+}
+
+void _showSnack(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      backgroundColor: MtColors.surfaceElevated,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      duration: const Duration(seconds: 2),
+    ),
+  );
 }

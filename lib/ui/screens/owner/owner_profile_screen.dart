@@ -140,12 +140,12 @@ class OwnerProfileScreen extends ConsumerWidget {
                   _MenuItem(
                     icon: Icons.payment_outlined,
                     label: 'Payment Methods',
-                    onTap: () {},
+                    onTap: () => _showSnack(context, 'Payment Methods coming soon'),
                   ),
                   _MenuItem(
                     icon: Icons.account_balance_outlined,
                     label: 'Bank Details',
-                    onTap: () {},
+                    onTap: () => _showSnack(context, 'Bank Details coming soon'),
                   ),
                 ],
               ),
@@ -157,7 +157,7 @@ class OwnerProfileScreen extends ConsumerWidget {
                   _MenuItem(
                     icon: Icons.notifications_outlined,
                     label: 'Notifications',
-                    onTap: () {},
+                    onTap: () => _showSnack(context, 'Notification Settings coming soon'),
                   ),
                   _MenuItem(
                     icon: Icons.language_outlined,
@@ -168,7 +168,7 @@ class OwnerProfileScreen extends ConsumerWidget {
                         color: MtColors.textTertiary,
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () => _showSnack(context, 'Language Settings coming soon'),
                   ),
                 ],
               ),
@@ -180,17 +180,17 @@ class OwnerProfileScreen extends ConsumerWidget {
                   _MenuItem(
                     icon: Icons.help_outline_rounded,
                     label: 'Help & Support',
-                    onTap: () {},
+                    onTap: () => _showSnack(context, 'Help & Support coming soon'),
                   ),
                   _MenuItem(
                     icon: Icons.description_outlined,
                     label: 'Terms of Service',
-                    onTap: () {},
+                    onTap: () => _showSnack(context, 'Terms of Service coming soon'),
                   ),
                   _MenuItem(
                     icon: Icons.privacy_tip_outlined,
                     label: 'Privacy Policy',
-                    onTap: () {},
+                    onTap: () => _showSnack(context, 'Privacy Policy coming soon'),
                   ),
                 ],
               ),
@@ -363,4 +363,16 @@ class _MenuItem {
     required this.onTap,
     this.trailing,
   });
+}
+
+void _showSnack(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      backgroundColor: MtColors.surfaceElevated,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      duration: const Duration(seconds: 2),
+    ),
+  );
 }

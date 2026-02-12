@@ -91,7 +91,7 @@ class ShipperProfileScreen extends ConsumerWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () => _showSnack(context, 'Edit Profile coming soon'),
                         child: Container(
                           width: 36,
                           height: 36,
@@ -150,7 +150,7 @@ class ShipperProfileScreen extends ConsumerWidget {
                 icon: Icons.payment_rounded,
                 iconBgColor: MtColors.primary,
                 label: 'Payment Methods',
-                onTap: () {},
+                onTap: () => _showSnack(context, 'Payment Methods coming soon'),
               ).animate().fadeIn(delay: 150.ms, duration: 300.ms).slideX(begin: 0.05, end: 0),
 
               _buildMenuItem(
@@ -158,7 +158,7 @@ class ShipperProfileScreen extends ConsumerWidget {
                 icon: Icons.location_on_rounded,
                 iconBgColor: MtColors.green,
                 label: 'Address Book',
-                onTap: () {},
+                onTap: () => _showSnack(context, 'Address Book coming soon'),
               ).animate().fadeIn(delay: 200.ms, duration: 300.ms).slideX(begin: 0.05, end: 0),
 
               _buildMenuItem(
@@ -166,7 +166,7 @@ class ShipperProfileScreen extends ConsumerWidget {
                 icon: Icons.notifications_rounded,
                 iconBgColor: MtColors.orange,
                 label: 'Notifications',
-                onTap: () {},
+                onTap: () => _showSnack(context, 'Notification Settings coming soon'),
               ).animate().fadeIn(delay: 250.ms, duration: 300.ms).slideX(begin: 0.05, end: 0),
 
               _buildMenuItem(
@@ -190,7 +190,7 @@ class ShipperProfileScreen extends ConsumerWidget {
                     ),
                   ),
                 ),
-                onTap: () {},
+                onTap: () => _showSnack(context, 'Language Settings coming soon'),
               ).animate().fadeIn(delay: 300.ms, duration: 300.ms).slideX(begin: 0.05, end: 0),
 
               _buildMenuItem(
@@ -198,7 +198,7 @@ class ShipperProfileScreen extends ConsumerWidget {
                 icon: Icons.help_outline_rounded,
                 iconBgColor: MtColors.primaryLight,
                 label: 'Help & Support',
-                onTap: () {},
+                onTap: () => _showSnack(context, 'Help & Support coming soon'),
               ).animate().fadeIn(delay: 350.ms, duration: 300.ms).slideX(begin: 0.05, end: 0),
 
               _buildMenuItem(
@@ -206,7 +206,7 @@ class ShipperProfileScreen extends ConsumerWidget {
                 icon: Icons.description_outlined,
                 iconBgColor: MtColors.textSecondary,
                 label: 'Terms & Conditions',
-                onTap: () {},
+                onTap: () => _showSnack(context, 'Terms & Conditions coming soon'),
               ).animate().fadeIn(delay: 400.ms, duration: 300.ms).slideX(begin: 0.05, end: 0),
 
               _buildMenuItem(
@@ -214,7 +214,7 @@ class ShipperProfileScreen extends ConsumerWidget {
                 icon: Icons.shield_outlined,
                 iconBgColor: MtColors.textSecondary,
                 label: 'Privacy Policy',
-                onTap: () {},
+                onTap: () => _showSnack(context, 'Privacy Policy coming soon'),
               ).animate().fadeIn(delay: 450.ms, duration: 300.ms).slideX(begin: 0.05, end: 0),
 
               _buildMenuItem(
@@ -339,4 +339,16 @@ class ShipperProfileScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+void _showSnack(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      backgroundColor: MtColors.surfaceElevated,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      duration: const Duration(seconds: 2),
+    ),
+  );
 }

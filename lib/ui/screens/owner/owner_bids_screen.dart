@@ -257,9 +257,7 @@ class _BidCard extends StatelessWidget {
 
     return MtCard(
       variant: MtCardVariant.surface,
-      onTap: bid.status == _BidStatus.active
-          ? () => context.push(Routes.ownerOrderDetail)
-          : null,
+      onTap: () => context.push(Routes.ownerOrderDetail),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

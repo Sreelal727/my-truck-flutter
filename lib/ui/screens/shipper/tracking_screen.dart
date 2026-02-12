@@ -261,7 +261,7 @@ class TrackingScreen extends ConsumerWidget {
                                 color: MtColors.white,
                                 size: 18,
                               ),
-                              onPressed: () {},
+                              onPressed: () => _showSnack(context, 'Calling driver Ramesh Yadav...'),
                             ),
                           ),
                           const SizedBox(width: MtSpacing.md),
@@ -275,7 +275,7 @@ class TrackingScreen extends ConsumerWidget {
                                 color: MtColors.white,
                                 size: 18,
                               ),
-                              onPressed: () {},
+                              onPressed: () => _showSnack(context, 'Calling truck owner Amit Patel...'),
                             ),
                           ),
                         ],
@@ -292,4 +292,16 @@ class TrackingScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+void _showSnack(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      backgroundColor: MtColors.surfaceElevated,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      duration: const Duration(seconds: 2),
+    ),
+  );
 }

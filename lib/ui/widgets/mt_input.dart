@@ -103,7 +103,12 @@ class _MtInputState extends State<MtInput> {
                         fontSize: 17,
                       ),
                       border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
                       counterText: '',
+                      isDense: true,
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: MtSpacing.lg,
                         vertical: widget.multiline ? MtSpacing.lg : MtSpacing.md,

@@ -14,6 +14,18 @@ class DriverHomeScreen extends ConsumerStatefulWidget {
 }
 
 class _DriverHomeScreenState extends ConsumerState<DriverHomeScreen> {
+  void _showSnack(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: MtColors.surfaceElevated,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
   // Mock: whether there is an active trip
   final bool _hasActiveTrip = true;
 
@@ -353,7 +365,7 @@ class _DriverHomeScreenState extends ConsumerState<DriverHomeScreen> {
         MtButton(
           title: 'Update Status: Destination Reached',
           onPressed: () {
-            // TODO: Implement status transition
+            _showSnack(context, 'Status updated to: Destination Reached');
           },
           icon: const Icon(
             Icons.check_circle_outline,
@@ -366,7 +378,7 @@ class _DriverHomeScreenState extends ConsumerState<DriverHomeScreen> {
           title: 'Upload POD',
           variant: MtButtonVariant.outline,
           onPressed: () {
-            // TODO: Implement POD upload
+            _showSnack(context, 'Camera for POD coming soon');
           },
           icon: const Icon(
             Icons.upload_file_outlined,
@@ -424,7 +436,7 @@ class _DriverHomeScreenState extends ConsumerState<DriverHomeScreen> {
               // Call button
               GestureDetector(
                 onTap: () {
-                  // TODO: Launch phone dialer
+                  _showSnack(context, 'Calling Amit Patel...');
                 },
                 child: Container(
                   width: 40,
