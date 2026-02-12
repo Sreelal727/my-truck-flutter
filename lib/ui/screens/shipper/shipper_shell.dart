@@ -18,21 +18,29 @@ class ShipperShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final location = GoRouterState.of(context).uri.path;
     final index = _calcIndex(location);
-    return Scaffold(
-      body: child,
-      extendBody: true,
-      bottomNavigationBar: AnimatedBottomNav(
-        items: const [
-          NavItem(icon: Icons.home_outlined, activeIcon: Icons.home_rounded, label: 'Home'),
-          NavItem(icon: Icons.receipt_long_outlined, activeIcon: Icons.receipt_long_rounded, label: 'Orders'),
-          NavItem(icon: Icons.notifications_outlined, activeIcon: Icons.notifications_rounded, label: 'Alerts'),
-          NavItem(icon: Icons.person_outline_rounded, activeIcon: Icons.person_rounded, label: 'Profile'),
-        ],
-        currentIndex: index,
-        onTap: (i) {
-          final route = [Routes.shipperHome, Routes.shipperOrders, Routes.shipperNotifications, Routes.shipperProfile][i];
-          context.go(route);
-        },
+    return PopScope(
+      canPop: index == 0,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) {
+          context.go(Routes.shipperHome);
+        }
+      },
+      child: Scaffold(
+        body: child,
+        extendBody: true,
+        bottomNavigationBar: AnimatedBottomNav(
+          items: const [
+            NavItem(icon: Icons.home_outlined, activeIcon: Icons.home_rounded, label: 'Home'),
+            NavItem(icon: Icons.receipt_long_outlined, activeIcon: Icons.receipt_long_rounded, label: 'Orders'),
+            NavItem(icon: Icons.notifications_outlined, activeIcon: Icons.notifications_rounded, label: 'Alerts'),
+            NavItem(icon: Icons.person_outline_rounded, activeIcon: Icons.person_rounded, label: 'Profile'),
+          ],
+          currentIndex: index,
+          onTap: (i) {
+            final route = [Routes.shipperHome, Routes.shipperOrders, Routes.shipperNotifications, Routes.shipperProfile][i];
+            context.go(route);
+          },
+        ),
       ),
     );
   }

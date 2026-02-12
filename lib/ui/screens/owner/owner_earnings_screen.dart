@@ -103,15 +103,9 @@ class OwnerEarningsScreen extends ConsumerWidget {
                   width: double.infinity,
                   padding: const EdgeInsets.all(MtSpacing.xl),
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        MtColors.primary,
-                        Color(0xFF0052CC),
-                      ],
-                    ),
+                    color: MtColors.surface,
                     borderRadius: BorderRadius.circular(MtBorderRadius.xl),
+                    border: Border.all(color: MtColors.primary, width: 1.5),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,18 +133,20 @@ class OwnerEarningsScreen extends ConsumerWidget {
                           variant: MtButtonVariant.outline,
                           fullWidth: true,
                           onPressed: () {
+                            ScaffoldMessenger.of(context).clearSnackBars();
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: const Text(
                                   'Withdrawal feature coming soon',
+                                  style: TextStyle(color: Color(0xFFFFFFFF)),
                                 ),
-                                backgroundColor: MtColors.surfaceElevated,
+                                backgroundColor: const Color(0xFF2C2C2E),
                                 behavior: SnackBarBehavior.floating,
+                                margin: const EdgeInsets.only(bottom: 100, left: 20, right: 20),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    MtBorderRadius.sm,
-                                  ),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
+                                duration: const Duration(seconds: 2),
                               ),
                             );
                           },
@@ -273,7 +269,7 @@ class OwnerEarningsScreen extends ConsumerWidget {
                                 barRods: [
                                   BarChartRodData(
                                     toY: _monthlyEarnings[i].$2,
-                                    color: MtColors.primary,
+                                    color: MtColors.green,
                                     width: 24,
                                     borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(6),

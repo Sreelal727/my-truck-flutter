@@ -342,11 +342,16 @@ class ShipperProfileScreen extends ConsumerWidget {
 }
 
 void _showSnack(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).clearSnackBars();
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      content: Text(message),
+      content: Text(
+        message,
+        style: const TextStyle(color: MtColors.white),
+      ),
       backgroundColor: MtColors.surfaceElevated,
       behavior: SnackBarBehavior.floating,
+      margin: const EdgeInsets.only(bottom: 100, left: 20, right: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       duration: const Duration(seconds: 2),
     ),

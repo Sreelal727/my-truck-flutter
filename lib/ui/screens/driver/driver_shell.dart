@@ -17,20 +17,28 @@ class DriverShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final location = GoRouterState.of(context).uri.path;
     final index = _calcIndex(location);
-    return Scaffold(
-      body: child,
-      extendBody: true,
-      bottomNavigationBar: AnimatedBottomNav(
-        items: const [
-          NavItem(icon: Icons.route_outlined, activeIcon: Icons.route_rounded, label: 'Trip'),
-          NavItem(icon: Icons.history_outlined, activeIcon: Icons.history_rounded, label: 'History'),
-          NavItem(icon: Icons.person_outline_rounded, activeIcon: Icons.person_rounded, label: 'Profile'),
-        ],
-        currentIndex: index,
-        onTap: (i) {
-          final route = [Routes.driverHome, Routes.driverHistory, Routes.driverProfile][i];
-          context.go(route);
-        },
+    return PopScope(
+      canPop: index == 0,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) {
+          context.go(Routes.driverHome);
+        }
+      },
+      child: Scaffold(
+        body: child,
+        extendBody: true,
+        bottomNavigationBar: AnimatedBottomNav(
+          items: const [
+            NavItem(icon: Icons.route_outlined, activeIcon: Icons.route_rounded, label: 'Trip'),
+            NavItem(icon: Icons.history_outlined, activeIcon: Icons.history_rounded, label: 'History'),
+            NavItem(icon: Icons.person_outline_rounded, activeIcon: Icons.person_rounded, label: 'Profile'),
+          ],
+          currentIndex: index,
+          onTap: (i) {
+            final route = [Routes.driverHome, Routes.driverHistory, Routes.driverProfile][i];
+            context.go(route);
+          },
+        ),
       ),
     );
   }

@@ -24,7 +24,7 @@ abstract final class MtColors {
   static const white = Color(0xFFFFFFFF);
   static const textPrimary = Color(0xFFFFFFFF);
   static const textSecondary = Color(0xFF8E8E93);
-  static const textTertiary = Color(0xFF636366);
+  static const textTertiary = Color(0xFF98989D);
   static const textDisabled = Color(0xFF48484A);
 
   // Borders & Dividers

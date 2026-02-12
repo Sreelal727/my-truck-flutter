@@ -71,39 +71,57 @@ class _PlaceBidScreenState extends ConsumerState<PlaceBidScreen> {
 
   void _submitBid() {
     if (_bidController.text.isEmpty) {
+      ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text('Please enter a bid amount'),
+          content: const Text(
+            'Please enter a bid amount',
+            style: TextStyle(color: Color(0xFFFFFFFF)),
+          ),
           backgroundColor: MtColors.red,
           behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.only(bottom: 100, left: 20, right: 20),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MtBorderRadius.sm),
+            borderRadius: BorderRadius.circular(10),
           ),
+          duration: const Duration(seconds: 2),
         ),
       );
       return;
     }
     if (_selectedTruckId == null) {
+      ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text('Please select a truck'),
+          content: const Text(
+            'Please select a truck',
+            style: TextStyle(color: Color(0xFFFFFFFF)),
+          ),
           backgroundColor: MtColors.red,
           behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.only(bottom: 100, left: 20, right: 20),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MtBorderRadius.sm),
+            borderRadius: BorderRadius.circular(10),
           ),
+          duration: const Duration(seconds: 2),
         ),
       );
       return;
     }
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Bid submitted!'),
+        content: const Text(
+          'Bid submitted!',
+          style: TextStyle(color: Color(0xFFFFFFFF)),
+        ),
         backgroundColor: MtColors.green,
         behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.only(bottom: 100, left: 20, right: 20),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MtBorderRadius.sm),
+          borderRadius: BorderRadius.circular(10),
         ),
+        duration: const Duration(seconds: 2),
       ),
     );
     context.pop();
